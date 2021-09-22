@@ -15,14 +15,13 @@ timedelta = datetime.timedelta(hours=9)
 
 
 class RunningBot:
-    def __init__(self, periods, trade_type, est_fileA, est_fileB, lstm_len, width, x_width, x_term, lot,
+    def __init__(self, periods, est_fileA, est_fileB, lstm_len, width, x_width, x_term, lot,
                  plt_dir, plt_file,
                  OUTLIER_TH, SMA_SHORT_TERM, SMA_LONG_TERM, EMA_SHORT_TERM, EMA_LONG_TERM,
                  MACD_TERM, BOL_TERM, STO_K_TERM, STO_S_TERM, STO_D_TERM, X_TERM):
         self.est_fileA = est_fileA
         self.est_fileB = est_fileB
         self.periods = periods
-        self.trade_type = trade_type
         self.lstm_len = lstm_len
         self.width = width
         self.x_width = x_width
