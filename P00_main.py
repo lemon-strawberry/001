@@ -6,8 +6,8 @@ import os
 import sys
 
 #データ処理の設定
-CON_DATA_FILE = 'D00_ohlcvData/15T_ohlcv_data.csv'
-COT_DATA_FILE = 'D00_ohlcvData/crypto_data.csv'
+CON_DATA_FILE = 'D00_ohlcv_data/15T_ohlcv_data.csv'
+COT_DATA_FILE = 'D00_ohlcv_data/crypto_data.csv'
 CON_OUT_FILE = 'D00_ohlcv_data/OHLCV_15T_data.csv'
 COT_OUT_FILE = 'D00_ohlcv_data/OHLCV_cry_data.csv'
 OUTLIER_TH = 3
