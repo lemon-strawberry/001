@@ -23,7 +23,7 @@ STO_D_TERM = 3
 X_TERM = 12
 
 #CryptoWatchからデータを保存
-CRY_OUT_FILE = 'D00_ohlcvData/crypto_data.csv'
+CRY_OUT_FILE = 'D00_ohlcv_data/crypto_data.csv'
 CRY_PERIOD = "900" #秒指定（60で1分）
 
 #推定器構築ステップ用の設定
