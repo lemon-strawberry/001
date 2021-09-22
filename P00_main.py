@@ -1,6 +1,18 @@
 """
 n期間の間にx％上昇・下落する確立を予測するモデルを上昇と下落に分け学習を行う(二値分類を二つ)
 事前に入手しているデータは全て学習に用いり、テストにはcryptowatchから入手した直近のデータを用いる。
+実行時のパラメータとして cry, con, cot, mes, est, test, running を指定
+cry : cryptowatchからデータの取得
+con : 事前に取得したデータの変換
+cot : cry で取得したデータの変換
+mes : モデルの学習
+est : 推定を実行
+test : バックテストを行う
+running : フォワードテストを行う
+動作確認終了　: cry, con ,cot, mes, est, test,
+【現在】
+学習が進まないため実用性は皆無
+データの加工方法を変えたりと調整中
 """
 import os
 import sys
@@ -52,18 +64,18 @@ EST_DST_DIR = 'D02_result'
 EST_DRS_FILE = os.path.join(EST_DST_DIR, 'detailed_result.txt')
 EST_SRS_FILE = os.path.join(EST_DST_DIR, 'summary_result.txt')
 
-PLOT_DIR = "D03_plot"
+PLOT_DIR = "D02_plot"
 PLOT_FILE = os.path.join(PLOT_DIR, "est.pdf")
 
 #データを保存するファイルの設定
-SAVE_DIR = 'D02_result'
+SAVE_DIR = 'D03_result'
 SAVE_FILE = os.path.join(SAVE_DIR, 'past01.pdf')
 #その他の設定
 COST = 0
 LOT = 0.02
 SFD_LONG = 0
 SFD_SHORT = 0
-X_WIDTH = 0.25
+X_WIDTH = 0.35
 
 PLT_DIR = "D04_plot"
 PLT_FILE = os.path.join(PLT_DIR, "profit.png")

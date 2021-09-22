@@ -60,7 +60,7 @@ def mkdir(d, rm=False):
             pass
 
 
-# データを可視化して保存
+# 学習過程のデータを可視化して保存
 def plot(history, filename):
 
     def add_subplot(nrows, ncols, index, xdata, train_ydata, valid_ydata, ylim, ylabel):
@@ -87,7 +87,7 @@ def plot(history, filename):
     plt.close('all')
 
 
-# データを可視化して保存
+# バックテスト時のデータを可視化して保存
 def plot2(data, pl, b_e_sig, s_e_sig, buy_c_sig, sell_c_sig, filename):
     plt.figure(figsize=(12.8, 8.6))
     # 価格を可視化
