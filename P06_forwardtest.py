@@ -223,6 +223,7 @@ class RunningBot:
 
                         num = data.index.get_loc(now_time - datetime.timedelta(minutes=5))
 
+                        # 学習モデルに用いたデータに合わせて書き換える必要あり
                         est_data = data.iloc[num-self.lstm_len+1:num+1, 3:]
                         est_data = np.array(est_data)
 

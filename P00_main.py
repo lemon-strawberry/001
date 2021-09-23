@@ -16,6 +16,9 @@ running : フォワードテストを行う
 【実行例】
 python P00_main.py cry con cot mes est test
     ↑データの取得からバックテストまで一通り全て行う
+【注意事項】
+P06_forwardtest.py の227行～を学習に用いたデータ(P10_utilのload_data)に合わせて少々変更を加える必要あり
+今後、個別に変更しなくてもいいように調整予定
 """
 import os
 import sys
@@ -51,17 +54,17 @@ INFO_FILE = os.path.join(EST_DIR, 'model_info.txt')
 GRAPH_FILE = os.path.join(EST_DIR, 'model_graph.pdf')
 HIST_FILE = os.path.join(EST_DIR, 'history.pdf')
 HIST_FILEB = os.path.join(EST_DIR, 'history2.pdf')
-LSTM_DIMS = 8
-MES_DIMS = [1]
+LSTM_DIMS = 32
+MES_DIMS = [8, 1]
 MES_LR = 1e-3
 MES_MIN_LR = 1e-15
-LSTM_LEN = 16
+LSTM_LEN = 32
 BATCH_SIZE = 256
 EPOCHS = 1000
 VARID_RATE = 0.2
 ES_PATIENCE = 20
 LR_PATIENCE = 10
-WIDTH = 0.5     # 予測に用いる上昇幅、下落幅の％
+WIDTH = 0.4     # 予測に用いる上昇幅、下落幅の％
 
 # 推定スッテプ用の設定
 EST_DST_DIR = 'D02_result'
@@ -79,7 +82,7 @@ COST = 0
 LOT = 0.02
 SFD_LONG = 0
 SFD_SHORT = 0
-X_WIDTH = 0.35  # 予測値(0~1)がこれ以上なら取引のフラグがたつ
+X_WIDTH = 0.45  # 予測値(0~1)がこれ以上なら取引のフラグがたつ
 
 PLT_DIR = "D04_plot"
 PLT_FILE = os.path.join(PLT_DIR, "profit.png")
