@@ -190,6 +190,7 @@ class BackTest:
 
         # backtest用データの読み込み
         data = pd.read_csv(self.est_data_file, header=0, index_col=0)
+        data.index = pd.to_datetime(data.index, format='%Y-%m-%d %H:%M:%S')
         data = data.iloc[len(data) - len(pred_data_a):, :]
 
         # 売買を記録
