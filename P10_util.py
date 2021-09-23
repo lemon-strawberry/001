@@ -16,12 +16,15 @@ def pd_load_data(data_file, header=0, index_col=0):
 def load_data(data_file, data_len, haba):
     data = pd.read_csv(data_file, header=0, index_col=0)
     data.index = pd.to_datetime(data.index, format='%Y-%m-%d %H:%M:%S')
+    # ラベルの作成
     data.loc[data["x_max"] >= haba, "max_class"] = 1
     data.loc[~(data["x_max"] >= haba), "max_class"] = 0
     data.loc[data["x_min"] >= haba, "min_class"] = 1
     data.loc[~(data["x_min"] >= haba), "min_class"] = 0
     data = np.array(data)
-    tra_data = data[:, 3:-4].astype(np.float)
+    # 学習に用いるデータを抽出
+    # tra_data = data[:, 3:-4].astype(np.float)     # 用意した指標すべて
+    tra_data = data[:, 3].astype(np.float)  # close のみ
     tra_class_a = data[:, -2].astype(np.int)
     tra_class_b = data[:, -1].astype(np.int)
     data_in = tra_data.shape[1]
@@ -30,6 +33,7 @@ def load_data(data_file, data_len, haba):
     trai_data = []
     trai_class_a = []
     trai_class_b = []
+    # 学習に用いるデータの標準化
     for i in range(0, len_seq):
         i_data = tra_data[i:i+data_len, :].copy()
         for n in range(data_in):
