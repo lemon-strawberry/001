@@ -13,16 +13,20 @@ running : フォワードテストを行う
 【現在】
 学習が進まないため実用性は皆無
 データの加工方法を変えたりと調整中
+【実行例】
+python P00_main.py cry con cot mes est test
+    ↑データの取得からバックテストまで一通り全て行う
 """
 import os
 import sys
 
-#データ処理の設定
-CON_DATA_FILE = 'D00_ohlcv_data/15T_ohlcv_data.csv'
+# データ処理の設定
+CON_DATA_FILE = 'D00_ohlcv_data/5T_ohlcv_data.csv'
 COT_DATA_FILE = 'D00_ohlcv_data/crypto_data.csv'
-CON_OUT_FILE = 'D00_ohlcv_data/OHLCV_15T_data.csv'
+CON_OUT_FILE = 'D00_ohlcv_data/OHLCV_5T_data.csv'
 COT_OUT_FILE = 'D00_ohlcv_data/OHLCV_cry_data.csv'
 OUTLIER_TH = 3
+# 指標のパラメータ
 SMA_SHORT_TERM = 7
 SMA_LONG_TERM = 21
 EMA_SHORT_TERM = 7
@@ -32,13 +36,13 @@ BOL_TERM = SMA_LONG_TERM
 STO_K_TERM = 14
 STO_S_TERM = 3
 STO_D_TERM = 3
-X_TERM = 12
+X_TERM = 12     # 上昇、下落の最大値をとる期間
 
-#CryptoWatchからデータを保存
+# CryptoWatchからデータを保存
 CRY_OUT_FILE = 'D00_ohlcv_data/crypto_data.csv'
-CRY_PERIOD = "900" #秒指定（60で1分）
+CRY_PERIOD = "300"  # 秒指定（60で1分）
 
-#推定器構築ステップ用の設定
+# 推定器構築ステップ用の設定
 EST_DIR = 'D01_estimator'
 EST_FILE = os.path.join(EST_DIR, 'estimator.h5')
 EST_FILEB = os.path.join(EST_DIR, 'estimatorB.h5')
@@ -53,13 +57,13 @@ MES_LR = 1e-3
 MES_MIN_LR = 1e-15
 LSTM_LEN = 16
 BATCH_SIZE = 256
-EPOCHS = 4000
+EPOCHS = 1000
 VARID_RATE = 0.2
 ES_PATIENCE = 20
 LR_PATIENCE = 10
-WIDTH = 1
+WIDTH = 0.5     # 予測に用いる上昇幅、下落幅の％
 
-#推定スッテプ用の設定
+# 推定スッテプ用の設定
 EST_DST_DIR = 'D02_result'
 EST_DRS_FILE = os.path.join(EST_DST_DIR, 'detailed_result.txt')
 EST_SRS_FILE = os.path.join(EST_DST_DIR, 'summary_result.txt')
@@ -67,15 +71,15 @@ EST_SRS_FILE = os.path.join(EST_DST_DIR, 'summary_result.txt')
 PLOT_DIR = "D02_plot"
 PLOT_FILE = os.path.join(PLOT_DIR, "est.pdf")
 
-#データを保存するファイルの設定
+# データを保存するファイルの設定
 SAVE_DIR = 'D03_result'
 SAVE_FILE = os.path.join(SAVE_DIR, 'past01.pdf')
-#その他の設定
+# その他の設定
 COST = 0
 LOT = 0.02
 SFD_LONG = 0
 SFD_SHORT = 0
-X_WIDTH = 0.35
+X_WIDTH = 0.35  # 予測値(0~1)がこれ以上なら取引のフラグがたつ
 
 PLT_DIR = "D04_plot"
 PLT_FILE = os.path.join(PLT_DIR, "profit.png")

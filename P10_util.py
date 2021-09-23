@@ -24,10 +24,13 @@ def load_data(data_file, data_len, haba):
     data = np.array(data)
     # 学習に用いるデータを抽出
     # tra_data = data[:, 3:-4].astype(np.float)     # 用意した指標すべて
-    tra_data = data[:, 3].astype(np.float)  # close のみ
+    tra_data = data[:, 3].astype(np.float)  # closeのみ
     tra_class_a = data[:, -2].astype(np.int)
     tra_class_b = data[:, -1].astype(np.int)
-    data_in = tra_data.shape[1]
+    if len(tra_data.shape) == 1:
+        data_in = 1
+    else:
+        data_in = tra_data.shape[1]
     data_out = 1
     len_seq = tra_data.shape[0] - data_len + 1
     trai_data = []
@@ -35,11 +38,18 @@ def load_data(data_file, data_len, haba):
     trai_class_b = []
     # 学習に用いるデータの標準化
     for i in range(0, len_seq):
-        i_data = tra_data[i:i+data_len, :].copy()
-        for n in range(data_in):
-            ave = i_data[:, n].mean()
-            std = i_data[:, n].std()
-            i_data[:, n] = (i_data[:, n] - ave) / std
+        if len(tra_data.shape) == 1:
+            i_data = tra_data[i:i + data_len].copy()
+            ave = i_data[:].mean()
+            std = i_data[:].std()
+            i_data[:] = (i_data[:] - ave) / std
+        else:
+            i_data = tra_data[i:i+data_len, :].copy()
+            for n in range(data_in):
+                ave = i_data[:, n].mean()
+                std = i_data[:, n].std()
+                i_data[:, n] = (i_data[:, n] - ave) / std
+
         trai_data.append(i_data)
         trai_class_a.append(tra_class_a[i+data_len-1])
         trai_class_b.append(tra_class_b[i+data_len-1])
